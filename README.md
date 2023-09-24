@@ -27,7 +27,7 @@ cd zoomapps-sample-js
 npm install
 
 # initialize your ngrok session
-ngrok http 3000
+ngrok http 3001
 ```
 
 ### Create your Zoom App
@@ -95,7 +95,7 @@ Ensure that the following scope is selected on the Scopes tab:
 
 ### Config `.env`
 
-When building for Development, open the `.env` file in your text editor and enter the following information from the App Credentials section you just
+When building for Development, open the `server/.env` file in your text editor and enter the following information from the App Credentials section you just
 configured:
 
 ```ini

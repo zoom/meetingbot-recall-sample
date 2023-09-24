@@ -6,6 +6,7 @@
     "dev:frontend": "webpack serve --config-name=frontend --mode development",
     "dev:server": "cross-env DEBUG='zoomapps*' webpack --config-name=server --watch --mode development",
     "build": "webpack --mode production",
+    "start": "node dist/server/bundle.js",
     "prepare": "npx husky install",
     "postprepare": "node scripts/gen-secrets.cjs"
   },
