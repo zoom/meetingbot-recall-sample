@@ -6,11 +6,12 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "ignorePatterns": ["**/vendor/*.js"]
+  "ignorePatterns": ["**/vendor/*.js", "**/node_modules/*.js", "**/dist/*.js"]
 }

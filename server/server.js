@@ -1,6 +1,6 @@
 import http from 'http';
 import debug from 'debug';
-import { appName } from '../config.js';
+import { appName } from './config.js';
 
 const dbg = debug(`${appName}:http`);
 

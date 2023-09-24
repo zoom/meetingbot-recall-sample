@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import createError from 'http-errors';
-import { zoomApp } from '../../config.js';
+import { zoomApp } from '../config.js';
 
 /**
  * Decode and parse a base64 encoded Zoom App Context

@@ -1,5 +1,5 @@
 import cookieSession from 'cookie-session';
-import { zoomApp } from '../config.js';
+import { zoomApp } from './config.js';
 
 export default cookieSession({
     name: 'session',

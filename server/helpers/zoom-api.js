@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { URL } from 'url';
-import { zoomApp } from '../../config.js';
+import { zoomApp } from '../config.js';
 import createError from 'http-errors';
 import crypto from 'crypto';
 

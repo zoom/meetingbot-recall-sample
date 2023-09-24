@@ -4,8 +4,8 @@ const fs = require('fs')
 
 const {name} = require('../package.json')
 
-const outputFile = '.env';
-const templateFile = `${outputFile}.sample`;
+const outputFile = 'server/.env';
+const templateFile = `server/${outputFile}.sample`;
 
 const options = {
     protect: true,

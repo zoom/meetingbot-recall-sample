@@ -1,14 +1,11 @@
 {
   "name": "zoomapps-sample-js",
   "version": "1.0.2",
-  "type": "module",
-  "exports": "./server",
-  "private": true,
   "scripts": {
-    "prestart": "npm run build",
-    "start": "node app.js",
-    "dev": "node scripts/dev.js",
-    "build": "rollup -c",
+    "dev": "concurrently 'npm run dev:frontend' 'npm run dev:server'",
+    "dev:frontend": "webpack serve --config-name=frontend --mode development",
+    "dev:server": "webpack --config-name=server --watch --mode development",
+    "build": "webpack --mode production",
     "prepare": "npx husky install",
     "postprepare": "node scripts/gen-secrets.cjs"
   },
@@ -23,41 +20,44 @@
     "express-validator": "^6.14.0",
     "helmet": "^5.0.2",
     "http-errors": "^2.0.0",
+    "lodash": "^4.17.21",
     "morgan": "~1.10.0",
-    "pug": "^3.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^21.0.3",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-url": "^6.1.0",
+    "@babel/preset-react": "^7.22.15",
+    "babel-loader": "^9.1.3",
     "concurrently": "^7.1.0",
+    "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.21.1",
+    "css-loader": "^6.8.1",
     "dotenv": "^16.0.0",
+    "dotenv-webpack": "^8.0.1",
     "envsub": "^4.0.7",
+    "esbuild": "^0.19.3",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-react": "^7.33.2",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
     "nodemon": "^2.0.15",
+    "nodemon-webpack-plugin": "^4.8.1",
     "prettier": "^2.5.1",
     "rollup": "^2.70.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-terser": "^7.0.2"
-  },
-  "nodemonConfig": {
-    "quiet": true,
-    "watch": [
-      "server/**/*.js",
-      "app.js",
-      "config.js",
-      ".env"
-    ]
+    "rollup-plugin-terser": "^7.0.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-middleware": "^6.1.1",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-hot-middleware": "^2.25.4"
   },
   "lint-staged": {
     "*.js": [

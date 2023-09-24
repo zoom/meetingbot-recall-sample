@@ -14,7 +14,7 @@ const { result } = concurrently([
         prefixColor: 'inverse.cyan',
     },
     {
-        command: `rollup -c --watch`,
+        command: ``,
         name: 'dev-app',
         prefixColor: 'inverse.yellow',
     },

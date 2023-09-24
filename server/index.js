@@ -8,11 +8,13 @@ import logger from 'morgan';
 import { dirname } from 'path';
 import { fileURLToPath, URL } from 'url';
 
-import { start } from './server/server.js';
-import indexRoutes from './server/routes/index.js';
-import authRoutes from './server/routes/auth.js';
+import { start } from './server.js';
+import installRoutes from './routes/install.js';
+import apiRoutes from './routes/api.js';
+import authRoutes from './routes/auth.js';
 
-import { appName, port, redirectUri } from './config.js';
+import { appName, port } from './config.js';
+import headers from './headers.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -20,15 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const dbg = debug(`${appName}:app`);
 
-const redirectHost = new URL(redirectUri).host;
-
-// views and assets
-const staticDir = `${__dirname}/dist`;
-const viewDir = `${__dirname}/server/views`;
-
-app.set('view engine', 'pug');
-app.set('views', viewDir);
-app.locals.basedir = staticDir;
+// frontend
+const staticDir = `${__dirname}/../dist/frontend`;
 
 // HTTP
 app.set('port', port);
@@ -54,29 +49,6 @@ const logFunc = (r) => {
 axios.interceptors.request.use(logFunc);
 axios.interceptors.response.use(logFunc);
 
-/*  Middleware */
-const headers = {
-    frameguard: {
-        action: 'sameorigin',
-    },
-    hsts: {
-        maxAge: 31536000,
-    },
-    referrerPolicy: 'same-origin',
-    crossOriginEmbedderPolicy: false,
-    contentSecurityPolicy: {
-        directives: {
-            'default-src': 'self',
-            styleSrc: ["'self'"],
-            scriptSrc: ["'self'", 'https://appssdk.zoom.us/sdk.min.js'],
-            imgSrc: ["'self'", `https://${redirectHost}`],
-            'connect-src': 'self',
-            'base-uri': 'self',
-            'form-action': 'self',
-        },
-    },
-};
-
 app.use(helmet(headers));
 
 app.use(express.json());
@@ -86,10 +58,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev', { stream: { write: (msg) => dbg(msg) } }));
 
 // serve our app folder
-app.use(express.static(staticDir));
+app.use('/', express.static(staticDir));
 
 /* Routing */
-app.use('/', indexRoutes);
+app.use('/install', installRoutes);
+app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
 // eslint-disable-next-line no-unused-vars
