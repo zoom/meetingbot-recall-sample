@@ -1,0 +1,54 @@
+.InMeeting {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
+}
+
+.InMeeting h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.InMeeting-record {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.InMeeting button {
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    border: 1px solid #4192a8;
+    border-radius: 0.25rem;
+    background-color: #4192a8;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.InMeeting button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.InMeeting-transcript {
+    height: 40%;
+    padding: 1rem;
+    background: #eee;
+    overflow: auto;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.InMeeting-transcript h3 {
+    margin: -0.5rem 0 0 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 300;
+}

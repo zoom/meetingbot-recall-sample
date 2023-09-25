@@ -15,6 +15,10 @@ const options = {
             value: crypto.randomBytes(32).toString('hex'),
         },
         {
+            name: '_WEBHOOK_SECRET',
+            value: crypto.randomBytes(32).toString('hex'),
+        },
+        {
             name: '_APP_NAME',
             value: name,
         },

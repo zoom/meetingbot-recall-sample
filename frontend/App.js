@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Installer from './Installer.js';
-import ZoomApp from './ZoomApp.js';
 import appFetch from './helpers/fetch.js';
+import Installer from './components/Installer/Installer.js';
+import ZoomApp from './components/ZoomApp/ZoomApp.js';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -19,19 +19,17 @@ function App() {
         getContext();
     }, []);
 
+    if (isLoading) {
+        return (
+            <div className="App">
+                <p className="App-loader">Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="App">
-            <header className="App-header">
-                <div>
-                    {isLoading ? (
-                        <p>Loading...</p>
-                    ) : isZoom ? (
-                        <ZoomApp />
-                    ) : (
-                        <Installer />
-                    )}
-                </div>
-            </header>
+            <div>{isZoom ? <ZoomApp /> : <Installer />}</div>
         </div>
     );
 }

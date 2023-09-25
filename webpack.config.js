@@ -41,7 +41,7 @@ module.exports = [
             port: 3001,
             proxy: [
                 {
-                    context: ['/auth', '/api', '/install'],
+                    context: ['/auth', '/api', '/webhook', '/install'],
                     target: 'http://localhost:3000',
                 },
             ],

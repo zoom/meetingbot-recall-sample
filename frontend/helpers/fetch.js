@@ -12,6 +12,8 @@ export default async function appFetch(path, options = {}) {
             {
                 headers: {
                     'X-Zoom-App-Context': context,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             },
             options

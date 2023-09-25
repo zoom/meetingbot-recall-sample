@@ -12,6 +12,7 @@ import { start } from './server.js';
 import installRoutes from './routes/install.js';
 import apiRoutes from './routes/api.js';
 import authRoutes from './routes/auth.js';
+import webhookRoutes from './routes/webhook.js';
 
 import { appName, port } from './config.js';
 import headers from './headers.js';
@@ -57,13 +58,14 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev', { stream: { write: (msg) => dbg(msg) } }));
 
-// serve our app folder
+// serve the frontend
 app.use('/', express.static(staticDir));
 
 /* Routing */
 app.use('/install', installRoutes);
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
+app.use('/webhook', webhookRoutes);
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
@@ -78,7 +80,10 @@ app.use((err, req, res, next) => {
 
     // render the error page
     res.status(status);
-    res.render('error');
+    res.json({
+        title,
+        message: err.message,
+    });
 });
 
 // redirect users to the home page if they get a 404 route
