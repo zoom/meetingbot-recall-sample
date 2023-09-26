@@ -1,6 +1,7 @@
-# Zoom Apps JavaScript Sample
+# Zoom Apps AI Assistant Sample
 
-This Zoom App Sample uses Node.js + Express to build a simple Hello World Zoom App.
+This Zoom App Sample uses Node.js + Express + React to build a simple AI virtual assistant Zoom App.
+We use [Recall.ai](https://recall.ai) to perform transcription and [Anthropic.ai](https://antropic.ai) to generate summaries.
 
 ## Prerequisites
 
@@ -11,6 +12,8 @@ This Zoom App Sample uses Node.js + Express to build a simple Hello World Zoom A
     1. Client ID
     2. Client Secret
     3. Redirect URI
+4. [Recall API Token](https://recall.ai)
+5. [Anthropic API Token](https://anthropic.ai)
 
 ## Getting started
 
@@ -18,10 +21,10 @@ Open your terminal:
 
 ```bash
 # Clone down this repository
-git clone git@github.com:zoom/zoomapps-sample-js.git
+git clone TODO
 
 # navigate into the cloned project directory
-cd zoomapps-sample-js
+cd TODO
 
 # run NPM to install the app dependencies
 npm install
@@ -50,19 +53,20 @@ In your terminal where you launched `ngrok`, find the `Forwarding` value and cop
 Redirect URL for OAuth" fields.
 
 ```
-Home URL:               https://xxxxx.ngrok.io
-Redirect URL for OAuth: https://xxxxx.ngrok.io/auth
+Home URL:               https://xxxxx.ngrok-free.app
+Redirect URL for OAuth: https://xxxxx.ngrok-free.app/auth
 ```
 
 > NOTE: ngrok URLs under ngrok's Free plan are ephemeral, meaning they will only live for up to a couple hours at most, and will change every time you reinitialize the application. This will require you to update these fields every time you restart your ngrok service.
 
 #### OAuth allow list
 
-- `https://example.ngrok.io`
+- `https://example.ngrok-free.app`
 
 #### Domain allow list
 
 - `appssdk.zoom.us`
+- `ngrok-free.app`
 - `ngrok.io`
 
 ### Config: Information
@@ -87,6 +91,9 @@ sections:
 #### APIs
 
 - shareApp
+- getRunningContext
+- getAppContext
+- getMeetingJoinUrl
 
 ### Scopes
 
@@ -106,7 +113,13 @@ ZM_CLIENT_ID=[app_client_id]
 ZM_CLIENT_SECRET=[app_client_secret]
 
 # Ngrok endpoint for your app in the Zoom Marketplace
-PUBLIC_URL=https://[xxxx-xx-xx-xxx-x].ngrok.io
+PUBLIC_URL=https://[xxxx-xx-xx-xxx-x].ngrok-free.app
+
+# Recall API token
+RECALL_API_TOKEN=[recall_api_token]
+
+# Anthropic API token
+ANTHROPIC_API_TOKEN=[anthropic_api_token]
 ```
 
 #### Zoom for Government
@@ -131,9 +144,9 @@ npm run dev
 
 The `dev` script will:
 
-1. Watch JS files and built to the dist/ folder
-1. Watch Server files and build to the dist/ folder
-1. Start the application
+1. Watch React files and build to the dist/ folder
+2. Watch Server files and build to the dist/ folder
+3. Start the server and webpack dev server
 
 ### Production
 
