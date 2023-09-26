@@ -21,10 +21,10 @@ Open your terminal:
 
 ```bash
 # Clone down this repository
-git clone TODO
+git clone https://github.com/recallai/zoom-bot-demo/
 
 # navigate into the cloned project directory
-cd TODO
+cd zoom-bot-demo
 
 # run NPM to install the app dependencies
 npm install
