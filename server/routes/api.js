@@ -196,7 +196,7 @@ router.post('/summarize', session, async (req, res, next) => {
             body: JSON.stringify({
                 model: 'claude-2',
                 prompt: completePrompt,
-                max_tokens_to_sample: 256,
+                max_tokens_to_sample: 1024,
             }),
         });
 
