@@ -1,4 +1,5 @@
 import express from 'express';
+import crypto from 'crypto';
 import { handleError, sanitize } from '../helpers/routing.js';
 import { zoomApp } from '../config.js';
 import db from '../helpers/database.js';
@@ -13,7 +14,12 @@ router.post('/transcription', async (req, res, next) => {
     try {
         sanitize(req);
 
-        if (req.query.secret !== zoomApp.webhookSecret) {
+        if (
+            !crypto.timingSafeEqual(
+                Buffer.from(req.query.secret, 'utf8'),
+                Buffer.from(zoomApp.webhookSecret, 'utf8')
+            )
+        ) {
             return res.status(401).json({ error: 'Unauthorized' });
         }
 
