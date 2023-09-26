@@ -26,6 +26,7 @@ router.post('/transcription', async (req, res, next) => {
         }
 
         db.transcripts[bot_id].push(transcript);
+        res.status(200).json({ success: true });
     } catch (e) {
         next(handleError(e));
     }

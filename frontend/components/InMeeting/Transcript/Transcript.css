@@ -1,0 +1,25 @@
+.InMeeting-transcript {
+    height: 40%;
+    padding: 0 1rem;
+    background: #eee;
+    overflow: auto;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.InMeeting h3 {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.InMeeting-transcript-speaker {
+    display: block;
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}

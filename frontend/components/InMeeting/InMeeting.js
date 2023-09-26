@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './InMeeting.css';
+import Transcript from './Transcript/Transcript.js';
 import zoomSdk from '@zoom/appssdk';
 import appFetch from '../../helpers/fetch';
+import Summary from './Summary/Summary';
 
 function InMeeting() {
     const [recordingState, setRecordingState] = useState('stopped');
@@ -27,7 +29,9 @@ function InMeeting() {
             }),
         });
 
-        if (res.status > 299) {
+        if (res.status <= 299) {
+            setRecordingState('bot-joining');
+        } else {
             setRecordingState('error');
         }
     };
@@ -36,34 +40,55 @@ function InMeeting() {
         setRecordingState('stopping');
         const res = await appFetch('/api/stop-recording', { method: 'POST' });
 
-        if (res.status > 299) {
+        if (res.status <= 299) {
+            setRecordingState('bot-leaving');
+        } else {
             setRecordingState('error');
         }
     };
 
-    useEffect(() => {
-        if (!['stopped', 'error'].includes(recordingState)) {
-            const interval = setInterval(async () => {
-                const res = await appFetch('/api/recording-state', {
-                    method: 'GET',
-                });
-                const { state, transcript } = await res.json();
-
-                if (state === 'in_call_not_recording') {
-                    setRecordingState('waiting');
-                } else if (state === 'in_call_recording') {
-                    setRecordingState('recording');
-                } else if (state === 'fatal') {
-                    setRecordingState('error');
-                } else if (state === 'done') {
-                    setRecordingState('stopped');
-                }
-
-                setTranscript(transcript);
-            }, 2000);
-
-            return () => clearInterval(interval);
+    const refreshState = async () => {
+        if (recordingState === 'starting' || recordingState === 'stopping') {
+            return;
         }
+
+        const res = await appFetch('/api/recording-state', {
+            method: 'GET',
+        });
+
+        if (res.status === 400) {
+            setRecordingState('stopped');
+            return;
+        }
+
+        const { state, transcript } = await res.json();
+
+        if (state === 'in_call_not_recording') {
+            setRecordingState('waiting');
+        } else if (
+            state === 'in_call_recording' &&
+            recordingState !== 'bot-leaving'
+        ) {
+            setRecordingState('recording');
+        } else if (state === 'call_ended') {
+            setRecordingState('bot-leaving');
+        } else if (state === 'fatal') {
+            setRecordingState('error');
+        } else if (state === 'done') {
+            setRecordingState('stopped');
+        }
+
+        setTranscript(transcript);
+    };
+
+    useEffect(() => {
+        refreshState();
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(refreshState, 2000);
+
+        return () => clearInterval(interval);
     }, [recordingState]);
 
     return (
@@ -77,28 +102,32 @@ function InMeeting() {
                     onClick={toggleRecording}
                     disabled={[
                         'starting',
+                        'bot-joining',
                         'waiting',
                         'stopping',
+                        'bot-leaving',
                         'error',
                     ].includes(recordingState)}
                 >
                     {recordingState === 'stopped' && 'Start Recording'}
                     {recordingState === 'recording' && 'Stop Recording'}
-                    {recordingState === 'starting' && 'Starting...'}
-                    {recordingState === 'stopping' && 'Stopping...'}
+                    {(recordingState === 'starting' ||
+                        recordingState === 'bot-joining') &&
+                        'Starting...'}
+                    {(recordingState === 'stopping' ||
+                        recordingState === 'bot-leaving') &&
+                        'Stopping...'}
                     {recordingState === 'waiting' &&
                         'Waiting for permission...'}
                     {recordingState === 'error' && 'An error occurred'}
                 </button>
             </div>
 
-            <div className="InMeeting-transcript">
-                <h3>Meeting Transcript</h3>
+            <h3>Meeting Transcript</h3>
+            <Transcript transcript={transcript} />
 
-                {transcript.map((t, i) => (
-                    <p key={i}>{JSON.stringify(t)}</p>
-                ))}
-            </div>
+            <h3>AI Summary</h3>
+            <Summary />
         </div>
     );
 }

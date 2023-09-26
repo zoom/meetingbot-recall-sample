@@ -1,0 +1,36 @@
+.InMeeting-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.InMeeting-summary select {
+    margin: 0.5rem auto;
+    height: 2rem;
+    width: 100%;
+    border: 1px solid #4192a8;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.75rem;
+    font-weight: 300;
+    cursor: pointer;
+    display: block;
+    font-family: inherit;
+}
+
+.InMeeting-summary select option {
+    font-family: inherit;
+}
+
+.InMeeting-summary-text {
+    display: block;
+    flex-grow: 1;
+    padding: 1rem;
+    background: #eee;
+    overflow: auto;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
