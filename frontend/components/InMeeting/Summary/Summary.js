@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Summary.css';
 import appFetch from '../../../helpers/fetch';
 
-export const Summary = () => {
+/* eslint react/prop-types: 0 */
+export const Summary = ({ transcript }) => {
     const [summaryState, setSummaryState] = useState('none');
     const [prompt, setPrompt] = useState('general_summary');
     const [summary, setSummary] = useState();
@@ -28,6 +29,8 @@ export const Summary = () => {
 
     return (
         <div className="InMeeting-summary">
+            <h3>AI Summary</h3>
+            <p className="InMeeting-summary-text">{summary}</p>
             <select value={prompt} onChange={(e) => setPrompt(e.target.value)}>
                 <option value="general_summary">Summarize this meeting</option>
                 <option value="action_items">Generate action items</option>
@@ -37,13 +40,15 @@ export const Summary = () => {
             </select>
             <button
                 onClick={generateSummary}
-                disabled={['summarising', 'error'].includes(summaryState)}
+                disabled={
+                    transcript.length === 0 ||
+                    ['summarising', 'error'].includes(summaryState)
+                }
             >
                 {summaryState === 'none' && 'Ask Claude'}
                 {summaryState === 'summarising' && 'Thinking...'}
                 {summaryState === 'error' && 'An Error Occurred'}
             </button>
-            <p className="InMeeting-summary-text">{summary}</p>
         </div>
     );
 };

@@ -97,6 +97,9 @@ function InMeeting() {
                 <h1>Your AI Notetaker</h1>
             </header>
 
+            <h3>Meeting Transcript</h3>
+            <Transcript transcript={transcript} />
+
             <div className="InMeeting-record">
                 <button
                     onClick={toggleRecording}
@@ -123,11 +126,7 @@ function InMeeting() {
                 </button>
             </div>
 
-            <h3>Meeting Transcript</h3>
-            <Transcript transcript={transcript} />
-
-            <h3>AI Summary</h3>
-            <Summary />
+            <Summary transcript={transcript} />
         </div>
     );
 }

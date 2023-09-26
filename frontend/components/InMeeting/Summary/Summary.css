@@ -31,6 +31,6 @@
     background: #eee;
     overflow: auto;
     font-size: 1rem;
-    margin-bottom: 1rem;
     border-radius: 0.25rem;
+    margin: 0;
 }

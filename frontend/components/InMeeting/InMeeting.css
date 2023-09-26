@@ -28,6 +28,7 @@
     font-size: 1rem;
     font-weight: 300;
     cursor: pointer;
+    width: 100%;
 }
 
 .InMeeting button:disabled {
