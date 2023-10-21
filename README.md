@@ -1,4 +1,4 @@
-# Zoom Apps AI Assistant Sample
+# Meeting Summarization Zoom App Demo
 
 This Zoom App Sample uses Node.js + Express + React to build a simple AI virtual assistant Zoom App.
 We use [Recall.ai](https://recall.ai) to perform transcription and [Anthropic.ai](https://antropic.ai) to generate summaries.
