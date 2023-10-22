@@ -34,18 +34,16 @@ ngrok http 3001
 ```
 
 ### Create your Zoom App
+In your web browser, navigate to the [Zoom Developer Portal](https://marketplace.zoom.us/develop/create) and register/log into your developer account.
 
-In your web browser, navigate to [Zoom Developer Portal](https://developers.zoom.us/) and register/log into your
-developer account.
+1. Click the "Develop" button on the top right of the page and click “Build App” in the dropdown that appears. 
+2. Click “Create” on the "Zoom Apps" application type.
+3. Name your app
+4. Choose whether to list your app on the marketplace or not
+5. Click "Create"
 
-Click the "Build App" button at the top and choose to "Zoom Apps" application.
+For more information, you can follow [this guide](https://dev.to/zoom/introducing-zoom-apps-33he) check out [this video series](https://www.youtube.com/playlist?list=PLKpRxBfeD1kGN-0QgQ6XtSwtxI3GQM16R) on how to create and configure these sample Zoom Apps.
 
-1. Name your app
-2. Choose whether to list your app on the marketplace or not
-3. Click "Create"
-
-For more information, you can follow [this guide](https://dev.to/zoom/introducing-zoom-apps-33he)
-check out [this video series](https://www.youtube.com/playlist?list=PLKpRxBfeD1kGN-0QgQ6XtSwtxI3GQM16R) on how to create and configure these sample Zoom Apps.
 
 ### Config: App Credentials
 
