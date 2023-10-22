@@ -50,6 +50,7 @@ The following information is required to activate your application:
 
 ### Zoom Products
 Check the "Meetings" check box.
+![](/docs/images/zoom-products.png)
 
 ### In-Client Features
 Scroll down to the section called "In-Client Features".
@@ -58,6 +59,7 @@ Under the Zoom App SDK section, click the `+ Add APIs` button and enable the fol
 - getRunningContext
 - getAppContext
 - getMeetingJoinUrl
+![](/docs/images/in-client-features.png)
 
 ### Scopes
 Ensure that the following scope is selected on the Scopes tab:
