@@ -70,6 +70,32 @@ router.post('/start-recording', session, async (req, res, next) => {
                     request_recording_permission_on_host_join: true,
                     require_recording_permission: true,
                 },
+                /* Uncomment this to enable the bot to display an image.
+                automatic_video_output: {
+                    in_call_recording: {
+                      kind: 'jpeg',
+                      b64_data: 'YOUR-BASE64-JPEG-GOES-HERE'
+                    }
+                },
+                */
+                /* Uncomment this to enable the bot to play audio.
+                automatic_audio_output: {
+                    in_call_recording: {
+                      data: {
+                        kind: 'mp3',
+                        b64_data: 'YOUR-BASE64-MP3-GOES-HERE'
+                      }
+                    }
+                },
+                */
+                /* Uncomment this to make the bot send a chat message.
+                chat: {
+                    on_bot_join: {
+                      send_to: 'everyone',
+                      message: 'Hello world'
+                    }
+                },
+                */
             }),
         });
 
