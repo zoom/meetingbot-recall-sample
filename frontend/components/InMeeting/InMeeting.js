@@ -94,7 +94,7 @@ function InMeeting() {
     return (
         <div className="InMeeting">
             <header>
-                <h1>Your ${} Notetaker</h1>
+                <h1>Your Notetaker</h1>
             </header>
 
             <h3>Meeting Transcript</h3>
