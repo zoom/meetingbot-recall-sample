@@ -118,6 +118,9 @@ RECALL_API_TOKEN=[recall_api_token]
 
 # Anthropic API token
 ANTHROPIC_API_TOKEN=[anthropic_api_token]
+
+# The name of the bot that joins the meeting
+BOT_NAME="[bot_name]"
 ```
 
 #### Zoom for Government
