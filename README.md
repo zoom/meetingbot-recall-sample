@@ -1,11 +1,32 @@
-# Meeting Summarization Zoom App Demo
+# Meeting Bot Starter Kit - Recall.ai 
 
-This Zoom App Sample uses Node.js + Express + React to build a simple AI virtual assistant Zoom App.
-We use [Recall.ai](https://recall.ai) to perform transcription and [Anthropic.ai](https://antropic.ai) to generate summaries.
+The Meeting Bot Starter Kit is a boilerplate Zoom Meeting assistant built using [Recall.ai](https://recall.ai), [Anthropic's Claude API](https://docs.anthropic.com/claude/reference/getting-started-with-the-api), and the [Zoom Apps SDK](https://developers.zoom.us/docs/zoom-apps/). 
+
+Using an automated Zoom Meeting client, it generates a transcript, requests a summary, and provides the summary back to the user in the Meeting in near real time. 
+
+Use this sample to build your own Meeting assistant by customizing the Meeting participant tile, summarization, and Zoom App. 
+
+## Features 
+
+1. Meeting audio access and transcription using [Recall.ai](https://recall.ai) and an Express server 
+2. Summarization using Anthropic’s Claude API 
+3. In-meeting app built using React and the Zoom Apps SDK
+
+## Architecture 
+
+![Architectural diagram of the Meeting bot starter kit](/docs/images/architecture.png)
+
+This Meeting Bot Starter Kit app joins a Zoom Meeting using a virtual meeting participant powered by [Recall.ai](https://recall.ai). 
+
+Recall receives local recording permission through a cloud-hosted Zoom client using the Zoom Meeting SDK and outputs a transcript of the meeting. 
+
+This transcript is passed to the Anthropic Claude API for summarization. 
+
+Summary responses are handled and passed back back to the user in the Zoom Meeting using a Zoom App, built using the Zoom Apps SDK. 
 
 ## Prerequisites
 
-1. [Node JS](https://nodejs.org/en/)
+1. [Node.js](https://nodejs.org/en/)
 2. [Ngrok](https://ngrok.com/docs/getting-started)
 3. [Zoom Account](https://support.zoom.us/hc/en-us/articles/207278726-Plan-Types-)
 4. [Zoom App Credentials](#config:-app-credentials) (Instructions below)
@@ -21,10 +42,10 @@ Open your terminal:
 
 ```bash
 # Clone down this repository
-git clone https://github.com/recallai/zoom-bot-demo/
+git clone https://github.com/zoom/meetingbot-recall-sample
 
 # navigate into the cloned project directory
-cd zoom-bot-demo
+cd meetingbot-recall-sample
 
 # run NPM to install the app dependencies
 npm install
@@ -123,15 +144,8 @@ ANTHROPIC_API_TOKEN=[anthropic_api_token]
 BOT_NAME="[bot_name]"
 ```
 
-#### Zoom for Government
-
-If you are a [Zoom for Government (ZfG)](https://www.zoomgov.com/) customer you can use the `ZM_HOST` variable to change
-the base URL used for Zoom. This will allow you to adjust to the different Marketplace and API Base URLs used by ZfG
-customers.
-
-**Marketplace URL:** marketplace.*zoomgov.com*
-
-**API Base URL:** api.*zoomgov.com*
+> Note: If you are a [Zoom for Government (ZfG)](https://www.zoomgov.com/) customer you can use the `ZM_HOST` variable to change
+the base URL used for Zoom.
 
 ## Start the App
 
@@ -162,7 +176,46 @@ NODE_ENV=production npm start
 
 # Windows
 set NODE_ENV=production && npm start
-````
+```
+
+## Customization: Meeting participant tile
+
+Edit the experience of the participant joining the Meeting through configuration of the Recall API. 
+
+**Name:** Add a recognizable name for your app to give user's context on what the participant is. To change the name, you can change the `bot_name` configured at the [following location](https://github.com/zoom/meetingbot-recall-sample/blob/d6e3920878206b435ed37eb7c95c43e70b404bba/server/routes/api.js#L60).
+
+**Profile image:** Uncomment this section 
+
+**Join meeting sound:** To play audio when the app joins a Meeting, [uncomment this section](https://github.com/zoom/meetingbot-recall-sample/blob/8d9920543d667ecb196a6fb8bd0272fcc4aa1761/server/routes/api.js#L81-L90) and replace the the text with an MP3 that you have base64 encoded. 
+
+**Chat messages:** [Uncomment this section](https://github.com/zoom/meetingbot-recall-sample/blob/8d9920543d667ecb196a6fb8bd0272fcc4aa1761/server/routes/api.js#L91-L98) to make the app send "Hello world" to everyone in the Meeting chat. Replace the text with your own message. 
+
+Reference the [Recall.ai API documentation](https://recallai.readme.io/reference/recall-overview) for additional customization options. 
+
+## Customization: LLM summarization
+
+This demo app uses Anthropic’s Claude API to summarize meeting transcripts in near real time. 
+
+[Edit the prompt](https://github.com/zoom/meetingbot-recall-sample/blob/d6e3920878206b435ed37eb7c95c43e70b404bba/server/routes/api.js#L138-L157) sent to Claude in `/server/routes/api.js`.
+
+Swap this out for a different LLM by [editing the API call](https://github.com/zoom/meetingbot-recall-sample/blob/d6e3920878206b435ed37eb7c95c43e70b404bba/server/routes/api.js#L194-L201) made in in the summarize route. 
+
+The user is shown [prompt options](https://github.com/zoom/meetingbot-recall-sample/blob/8d9920543d667ecb196a6fb8bd0272fcc4aa1761/frontend/components/InMeeting/Summary/Summary.js#L34C4-L34C4) in the frontend that adjust the prompt sent to handle the meeting summarization done by the Claude API. 
+
+## Customization: Zoom App
+
+This sample is a basic example of a web app running inside the Zoom client. 
+
+Using the [Zoom Apps SDK](https://appssdk.zoom.us/classes/ZoomSdk.ZoomSdk.html), existing web apps can be modified to run in the Zoom desktop or mobile client.
+
+In the InMeeting component, you’ll see two important components: 
+
+* [Transcript.js](https://github.com/zoom/meetingbot-recall-sample/blob/main/frontend/components/InMeeting/Transcript/Transcript.js) handles and displays a text transcript of the conversation generated by Recall using local recording access to the Meeting’s audio. 
+* [Summary.js](https://github.com/zoom/meetingbot-recall-sample/blob/main/frontend/components/InMeeting/Summary/Summary.js) handles a prompted response from the Claude API to display a summary to the user in the Meeting, providing prompt options to the user (ex: “Generate action items”) that [adjust the prompt](https://github.com/zoom/meetingbot-recall-sample/blob/8d9920543d667ecb196a6fb8bd0272fcc4aa1761/server/routes/api.js#L177) sent in the /api/summarize route. 
+
+For an additional example of a Zoom App running in a Meeting, reference the [Advanced Zoom Apps Sample](https://github.com/zoom/zoomapps-advancedsample-react) and the [Zoom Apps documentation](https://developers.zoom.us/docs/zoom-apps/). 
+
+While this is one example of an in-meeting app, the implementation shown in the Transcript and Summary component can be reused in any existing or new web app running inside the Meeting. 
 
 ## Usage
 
@@ -173,7 +226,7 @@ After you authorize the app, Zoom will automatically open the app within the cli
 ### Keeping secrets secret
 
 This application makes use of your Zoom App Client ID and Client Secret as well as a custom secret for signing session
-cookies. During development, the application will read from the .env file. ;
+cookies. During development, the application will read from the .env file.
 
 In order to align with security best practices, this application does not read from the .env file in production mode.
 
@@ -191,12 +244,3 @@ files pass checks prior to commit.
 ### Testing
 
 At this time there are no e2e or unit tests.
-
-## Need help?
-
-If you're looking for help, try [Developer Support](https://devsupport.zoom.us) or
-our [Developer Forum](https://devforum.zoom.us). Priority support is also available
-with [Premier Developer Support](https://zoom.us/docs/en-us/developer-support-plans.html) plans.
-
-### Documentation
-Make sure to review [our documentation](https://marketplace.zoom.us/docs/zoom-apps/introduction/) as a reference when building your Zoom Apps.
