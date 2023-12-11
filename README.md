@@ -70,7 +70,7 @@ In your web browser, navigate to the [Zoom Developer Portal](https://marketplac
 
 For more information, you can follow [this guide](https://dev.to/zoom/introducing-zoom-apps-33he) check out [this video series](https://www.youtube.com/playlist?list=PLKpRxBfeD1kGN-0QgQ6XtSwtxI3GQM16R) on how to create and configure these sample Zoom Apps.
 
-### Create your Zoom SDK
+### Create your Zoom SDK App
 The Meeting Bot Starter Kit uses [Zoom Meeting SDK](https://developers.zoom.us/docs/meeting-sdk/) to join and record Zoom Meetings.
 
 In the [Zoom Developer Portal](https://marketplace.zoom.us/develop/create), create a Zoom Meeting SDK app for connectivity to Zoom Service:
