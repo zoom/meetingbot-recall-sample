@@ -36,7 +36,6 @@ Summary responses are handled and passed back back to the user in the Zoom Meeti
 5. [Zoom SDK Credentials]
     1. Client ID
     2. Client Secret
-    3. Redirect URI
 6. [Recall API Token](https://recall.ai)
 7. [Anthropic API Token](https://anthropic.ai)
 
