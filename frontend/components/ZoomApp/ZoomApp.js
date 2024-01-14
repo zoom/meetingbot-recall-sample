@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter
 import './ZoomApp.css';
 import zoomSdk from '@zoom/appssdk';
 import InMeeting from '../InMeeting/InMeeting.js';
 import Fallback from '../Fallback/Fallback.js';
+import Home from '../Calendar/Home.jsx';
 
 function ZoomApp() {
     const [zoomContext, setZoomContext] = useState(null);
@@ -33,7 +35,15 @@ function ZoomApp() {
 
     return (
         <div className="ZoomApp">
-            {Component ? <Component /> : <Fallback />}
+            <Router>
+                <Routes>
+                    <Route
+                        path="/home"
+                        element={Component ? <Component /> : <Fallback />}
+                    />
+                    <Route path="/" element={<Home />} />
+                </Routes>
+            </Router>
         </div>
     );
 }

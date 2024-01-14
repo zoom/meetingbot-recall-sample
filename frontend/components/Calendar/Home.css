@@ -1,0 +1,46 @@
+/* Home.css */
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333; /* Use your desired background color */
+    color: white;
+  }
+  
+  .header h1 {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+  
+  .header .icon {
+    height: 2rem;
+    width: 2rem;
+    fill: white;
+  }
+  
+  /* Main content styles */
+  .main {
+    text-align: center;
+    margin-top: 4rem;
+  }
+  
+  .main h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #333; /* Use your desired text color */
+  }
+  
+  .main p {
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    color: #666; /* Use your desired text color */
+  }
+  
+  /* Add more styles as needed */
+  

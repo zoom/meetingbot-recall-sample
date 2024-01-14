@@ -11,6 +11,7 @@
     "postprepare": "node scripts/gen-secrets.cjs"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@zoom/appssdk": "^0.16.8",
     "axios": "^0.26.0",
     "compression": "^1.7.4",
@@ -26,7 +27,8 @@
     "morgan": "~1.10.0",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",

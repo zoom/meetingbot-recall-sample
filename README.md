@@ -33,8 +33,11 @@ Summary responses are handled and passed back back to the user in the Zoom Meeti
     1. Client ID
     2. Client Secret
     3. Redirect URI
-4. [Recall API Token](https://recall.ai)
-5. [Anthropic API Token](https://anthropic.ai)
+5. [Zoom SDK Credentials]
+    1. Client ID
+    2. Client Secret
+6. [Recall API Token](https://recall.ai)
+7. [Anthropic API Token](https://anthropic.ai)
 
 ## Getting started
 
@@ -63,8 +66,19 @@ In your web browser, navigate to the [Zoom Developer Portal](https://marketplac
 4. Choose whether to list your app on the marketplace or not
 5. Click "Create"
 
+
 For more information, you can follow [this guide](https://dev.to/zoom/introducing-zoom-apps-33he) check out [this video series](https://www.youtube.com/playlist?list=PLKpRxBfeD1kGN-0QgQ6XtSwtxI3GQM16R) on how to create and configure these sample Zoom Apps.
 
+### Create your Zoom SDK App
+The Meeting Bot Starter Kit uses [Zoom Meeting SDK](https://developers.zoom.us/docs/meeting-sdk/) to join and record Zoom Meetings.
+
+In the [Zoom Developer Portal](https://marketplace.zoom.us/develop/create), create a Zoom Meeting SDK app for connectivity to Zoom Service:
+
+1. From the "Develop" drop-down choose "Build App"
+2. From the options available "Create" a "Meeting SDK" app type and follow the instructions
+3. In the resulting screen, click on "App Credential" from the sidebar to make note of "Client ID" and "Client Secret"
+   
+> NOTE: You will need to add these credentials to Recall.ai dashboard
 
 ### Config: App Credentials
 
@@ -163,6 +177,12 @@ The `dev` script will:
 2. Watch Server files and build to the dist/ folder
 3. Start the server and webpack dev server
 
+### Install Zoom App
+
+To install the Zoom App, in your browser navigate to the **Home URL** that you set in your Zoom App, then click the link to install.
+
+After you authorize the app, Zoom will automatically open the app within the client.
+
 ### Production
 
 When running your application in production no logs are sent to the console by default and the server is not restarted
@@ -216,12 +236,6 @@ In the InMeeting component, you’ll see two important components:
 For an additional example of a Zoom App running in a Meeting, reference the [Advanced Zoom Apps Sample](https://github.com/zoom/zoomapps-advancedsample-react) and the [Zoom Apps documentation](https://developers.zoom.us/docs/zoom-apps/). 
 
 While this is one example of an in-meeting app, the implementation shown in the Transcript and Summary component can be reused in any existing or new web app running inside the Meeting. 
-
-## Usage
-
-To install the Zoom App, Navigate to the **Home URL** that you set in your browser and click the link to install.
-
-After you authorize the app, Zoom will automatically open the app within the client.
 
 ### Keeping secrets secret
 
