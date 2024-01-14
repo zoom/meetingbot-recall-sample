@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarIcon } from '@heroicons/react/24/solid';
-import SignInButton from './Signinbtn';
+import SignInButton from './SigninBtn';
 import './Home.css'; // Import your CSS file
 
 function Home() {
