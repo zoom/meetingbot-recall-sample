@@ -1,0 +1,23 @@
+/* SignInButton.css */
+
+/* Button styles */
+.button {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  .button img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+  }
+  
+  /* Add more styles as needed */
+  
