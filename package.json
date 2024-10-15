@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@zoom/appssdk": "^0.16.8",
-    "axios": "^0.26.0",
+    "axios": "^1.7.7",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.6",
     "cookie-session": "^2.0.0",
@@ -48,7 +48,7 @@
     "eslint-plugin-react": "^7.33.2",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
-    "nodemon": "^2.0.15",
+    "nodemon": "^3.1.7",
     "nodemon-webpack-plugin": "^4.8.1",
     "prettier": "^2.5.1",
     "style-loader": "^3.3.3",
